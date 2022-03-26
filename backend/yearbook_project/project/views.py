@@ -23,7 +23,11 @@ def register(request):
             import random
             otp=random.randint(100000,999999)
             print("The otp is", otp)
-            # send_mail('Yearbook verification otp', 'Your otp is: ', '', ['to@example.com'], fail_silently=False)
+            subject = "OTP request"
+            message = 'Hi, your otp is ' + str(otp)
+            email_from = 'bhutramuskan29@gmail.com'
+            recipient = [email, ]
+            send_mail(subject, message, email_from, recipient, fail_silently=True)
             return Response({otp})
         else:
             submitted_otp=req_data['otp_field']
@@ -51,3 +55,9 @@ def login(request):
             return Response({"status": "Incorrect password"})
     else:
         return Response({"status": "User doesn't exist, Create account!"})
+
+@api_view(['GET']) 
+def scroll(request):
+    data = Post.objects.all()
+    data_serializer = serializers.PostSerializer(data, many=True)
+    return Response(data_serializer.data)

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -129,10 +130,10 @@ STATIC_URL = 'static/'
 
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
-# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
